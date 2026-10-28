@@ -5,36 +5,37 @@ const ProjectManager = function () {
     const projects = new Map();
 
     const getProjects = () => {
-        return [...projects];
+        return [...projects.values()];
     };
 
     const createProject = (title, color) => {
         const project = new Project(title, color);
-        projects.set(String(project.id), project);
+
+        projects.set(project.id, project);
 
         return project.id;
     };
 
     const deleteProject = (projectID) => {
-        if (projects.get(String(projectID))) {
-            projects.delete(String(projectID));
-        }
+        return projects.delete(projectID);
     };
 
     const editProject = (id, title, color) => {
-        if (projects.has(id)) {
-            const project = projects.get(id);
-            project.title = title;
-            project.color = color;
-        }
+        const project = projects.get(String(id));
+
+        if (!project) return false;
+
+        project.title = title;
+        project.color = color;
+        return true;
     };
 
     const getProject = (id) => {
         return projects.get(id);
     };
 
-    const getTodo = (projectID) => {
-        return projects.get(projectID).get()
+    const getTodo = (projectID, todoID) => {
+        return projects.get(projectID)?.getTodo(todoID);
     };
 
     return {getProjects, createProject, deleteProject, editProject, getTodo, getProject};

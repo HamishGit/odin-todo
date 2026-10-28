@@ -31,12 +31,8 @@ class Project {
     }
 
     remove(todoID) {
-        if (this._todos.get(todoID)) {
-            this._todos.delete(todoID);
-            return true;
-        } else {
-            return false
-        }
+        return this._todos.delete(todoID);
+
     }
 
     getTodo(todoID) {
@@ -44,7 +40,7 @@ class Project {
     }
 
     getTodos() {
-        return [...this._todos]; 
+        return [...this._todos.values()]; 
     }
 
     has(todoID) {
