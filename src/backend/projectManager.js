@@ -54,8 +54,6 @@ const ProjectManager = function () {
         for (const projectDataRaw of projectListData) {
             const projectData = JSON.parse(projectDataRaw);
 
-            console.log(projectData);
-
             createProjectFromJSON(projectData);
 
             for (const todo of projectData.todos) {
@@ -71,8 +69,6 @@ const ProjectManager = function () {
             projectData.id
         );
     }
-
-    StorageHandler.loadStorage();
 
     return {getProjects, createProject, deleteProject, editProject, getTodo, getProject, loadProjects};
 }();
