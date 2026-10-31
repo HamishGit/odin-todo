@@ -1,4 +1,5 @@
 import Project from "./project.js";
+import TodoManager from "./todoManager.js";
 
 const ProjectManager = function () {
 
@@ -8,8 +9,8 @@ const ProjectManager = function () {
         return [...projects.values()];
     };
 
-    const createProject = (title, color) => {
-        const project = new Project(title, color);
+    const createProject = (title, color, id) => {
+        const project = new Project(title, color, id);
 
         projects.set(project.id, project);
 
@@ -38,7 +39,30 @@ const ProjectManager = function () {
         return projects.get(projectID)?.getTodo(todoID);
     };
 
-    return {getProjects, createProject, deleteProject, editProject, getTodo, getProject};
+    const loadProjects = (projectListData) => {
+
+        for (const projectDataRaw of projectListData) {
+            const projectData = JSON.parse(projectDataRaw);
+
+            console.log(projectData);
+
+            createProjectFromJSON(projectData);
+
+            for (const todo of projectData.todos) {
+                TodoManager.createTodoFromJSON(todo);
+            }
+        }
+    };
+
+    const createProjectFromJSON = (projectData) => {
+        return createProject(
+            projectData.title,
+            projectData.color,
+            projectData.id
+        );
+    }
+
+    return {getProjects, createProject, deleteProject, editProject, getTodo, getProject, loadProjects};
 }();
 
 export default ProjectManager;

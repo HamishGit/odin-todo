@@ -1,9 +1,9 @@
 class Project {
-    constructor(title, color) {
+    constructor(title, color, id) {
         this._title = title;
         this._color = color;
         this._todos = new Map();
-        this._id = crypto.randomUUID();
+        this._id = id ?? crypto.randomUUID();
     }
 
     get title() {
@@ -45,6 +45,15 @@ class Project {
 
     has(todoID) {
         return this._todos.has(todoID);
+    }
+
+    toJSON() {
+        return JSON.stringify({
+            id: this._id,
+            title: this._title,
+            color: this._color,
+            todos: this.getTodos()
+        });
     }
 }
 

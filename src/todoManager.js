@@ -3,9 +3,9 @@ import projectManager from "./projectManager.js";
 
 const TodoManager = function () {
 
-    const createTodo = (title, desc, dueDate, priority, notes, projectID) => {
+    const createTodo = (title, desc, dueDate, priority, notes, projectID, todoID, completed) => {
         
-        const todo = new Todo(title, desc, dueDate, priority, notes, projectID);
+        const todo = new Todo(title, desc, dueDate, priority, notes, projectID, todoID, completed);
 
         const project = projectManager.getProject(projectID);
         
@@ -40,7 +40,20 @@ const TodoManager = function () {
         return true;
     };
 
-    return {createTodo, deleteTodo, editTodo};
+    const createTodoFromJSON = (todoData) => {
+        return createTodo(
+            todoData.title ?? '',
+            todoData.desc ?? '',
+            todoData.dueDate ?? '',
+            todoData.priority ?? 1,
+            todoData.notes ?? '',
+            todoData.projectID,
+            todoData.id,
+            todoData.completed
+        );
+    }
+
+    return {createTodo, deleteTodo, editTodo, createTodoFromJSON};
 }();
 
 export default TodoManager;
