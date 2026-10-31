@@ -1,0 +1,168 @@
+@font-face {
+    font-family: 'Inter';
+    src: url(./Fonts/Inter-Regular.woff2);
+}
+
+:root {
+    /* colors */
+    --bg-color-light: #f2f5f7;
+    --bg-dark: #E1E4E9;
+    --text-muted: oklch(77.858% 0.03953 265.794);
+    --green: oklch(70.147% 0.22226 141.157);
+    --icon-clr: #5e6061;
+
+    /* fonts */
+    --font-family-reg: 'Inter', sans-serif;
+}
+
+* {
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: var(--font-family-reg);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: clamp(200px, 25%, 300px) 4fr;
+    height: 100vh;
+}
+
+#sidebar, #content {
+    display: grid;
+    grid-template-rows: 1fr 3rem;
+}
+
+#sidebar {
+    grid-column-start: 1;
+    background-color: var(--bg-color-light);
+}
+
+#sidebar .projects {
+    margin-top: 5rem;
+    grid-row-start: 1;
+}
+
+#sidebar .projects h3 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    padding: 0.4rem 0.2rem;
+}
+
+#sidebar .projects h3.selected, #sidebar .projects h3:hover {
+    background-color: var(--bg-dark);
+}
+
+#sidebar .projects h3:hover {
+    cursor: pointer;
+}
+
+.footer {
+    border-top: 2px solid var(--bg-dark);
+    display: flex;
+    align-items: center;
+}
+
+#sidebar .footer p {
+    display: flex;
+    align-items: center;
+}
+
+#sidebar .footer p::before {
+    content: "";
+    display: block;
+    width: 28px;
+    height: 28px;
+
+    background-color: var(--icon-clr);
+
+    mask: url(./resources/plus.svg) no-repeat center;
+    mask-size: contain;
+    flex-shrink: 0;
+}
+
+#sidebar .footer p:hover {
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+#sidebar .footer p:hover::before {
+    background-color: var(--text-muted);
+}
+
+#content {
+    grid-column-start: 2;
+}
+
+#content .header {
+    margin-top: 8rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#content .list {
+    padding: 0 2rem;
+}
+
+#content .list .todo-item {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#content .list .todo-item:hover {
+    background-color: var(--bg-color-light);
+    cursor: pointer;
+}
+
+#content .list .todo-item.completed {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+#content .list .todo-item::before, #sidebar .projects h3::before {
+    content: '◯';
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--text-muted);
+}
+
+#content .list .todo-item.completed::before {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+
+    background-color: var(--green);
+
+    mask: url(./resources/check-circle-outline.svg) no-repeat center;
+    mask-size: contain;
+}
+
+#content .footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+#content .footer svg {
+    width: 28px;
+    height: 28px;
+    fill: var(--icon-clr);
+}
+
+#content .footer svg:hover {
+    cursor: pointer;
+}
