@@ -1,5 +1,6 @@
 import Todo from "./todo.js";
 import projectManager from "./projectManager.js";
+import StorageHandler from "./storageHandler.js";
 
 const TodoManager = function () {
 
@@ -13,6 +14,8 @@ const TodoManager = function () {
 
         project.add(todo);
 
+        StorageHandler.populateStorage();
+
         return todo.id;
     };
 
@@ -21,7 +24,11 @@ const TodoManager = function () {
 
         if (!project) return false;
 
-        return project.remove(todoID);
+        const wasRemoved = project.remove(todoID);
+
+        StorageHandler.populateStorage();
+
+        return wasRemoved;
     };
 
     const editTodo = (title, dueDate, priority, notes, projectID, id) => {
@@ -36,7 +43,9 @@ const TodoManager = function () {
         todo.dueDate = dueDate;
         todo.priority = priority;
         todo.notes = notes
-            
+        
+        StorageHandler.populateStorage();
+
         return true;
     };
 

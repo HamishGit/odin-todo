@@ -1,4 +1,5 @@
 import Project from "./project.js";
+import StorageHandler from "./storageHandler.js";
 import TodoManager from "./todoManager.js";
 
 const ProjectManager = function () {
@@ -14,11 +15,17 @@ const ProjectManager = function () {
 
         projects.set(project.id, project);
 
+        StorageHandler.populateStorage();
+
         return project.id;
     };
 
     const deleteProject = (projectID) => {
-        return projects.delete(projectID);
+        const wasRemoved = projects.delete(projectID);
+
+        StorageHandler.populateStorage();
+
+        return wasRemoved;
     };
 
     const editProject = (id, title, color) => {
@@ -28,6 +35,9 @@ const ProjectManager = function () {
 
         project.title = title;
         project.color = color;
+
+        StorageHandler.populateStorage();
+        
         return true;
     };
 
@@ -61,6 +71,8 @@ const ProjectManager = function () {
             projectData.id
         );
     }
+
+    StorageHandler.loadStorage();
 
     return {getProjects, createProject, deleteProject, editProject, getTodo, getProject, loadProjects};
 }();
