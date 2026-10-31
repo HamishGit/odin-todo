@@ -17,7 +17,7 @@ const StorageHandler = function() {
         ProjectManager.loadProjects(projectsData);
     }
 
-    return {storageAvailable, loadStorage, populateStorage}
+    return {loadStorage, populateStorage}
 }();
 
 export default StorageHandler;
