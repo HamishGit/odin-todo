@@ -37,7 +37,7 @@ const ProjectManager = function () {
         project.color = color;
 
         StorageHandler.populateStorage();
-        
+
         return true;
     };
 
