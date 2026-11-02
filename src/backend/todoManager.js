@@ -5,7 +5,7 @@ import StorageHandler from "./storageHandler.js";
 const TodoManager = function () {
 
     const createTodo = (title, desc, dueDate, priority, notes, projectID, todoID, completed) => {
-        
+        console.log('Entered Create Todo');
         const todo = new Todo(title, desc, dueDate, priority, notes, projectID, todoID, completed);
 
         const project = projectManager.getProject(projectID);
