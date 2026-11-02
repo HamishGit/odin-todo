@@ -10,16 +10,16 @@ const DialogManager = function() {
         createTodoForm : document.querySelector('form#create-todo-form'),
         currentProjectH1 : document.querySelector('#project-header h1'),
         submitFormButton : document.querySelector('#create-todo-form button[type="submit"]'),
+        deleteTodoBtn : document.querySelector('#delete-todo-btn'),
     }
 
     const showNewTodoModal = (create) => {
-
-        if (create) {
-            UI.submitFormButton.textContent = 'Create';
-            UI.submitFormButton.dataset.action = 'create';
+        if (create && !UI.deleteTodoBtn.classList.contains('hidden')) {
+            UI.deleteTodoBtn.classList.add('hidden');
         } else {
-            UI.submitFormButton.textContent = 'Save';
-            UI.submitFormButton.dataset.action = 'save';
+            if (!create) {
+                UI.deleteTodoBtn.classList.remove('hidden');
+            }
         }
 
         UI.createTodoDialog.showModal();
@@ -33,7 +33,9 @@ const DialogManager = function() {
         UI.addButton.addEventListener('click', () => {
             UI.createTodoForm.reset();
             document.querySelector('#notes').textContent = '';
-            showNewTodoModal(true)
+            UI.submitFormButton.textContent = 'Create';
+            UI.submitFormButton.dataset.action = 'create';
+            showNewTodoModal(true);
         });
         UI.closeDialogButton.addEventListener('click', closeDialog);
     
@@ -49,6 +51,8 @@ const DialogManager = function() {
                 document.querySelector('#priority').value = Number(todo.priority);
                 document.querySelector('#notes').textContent = todo.notes;
                 
+                UI.submitFormButton.textContent = 'Save';
+                UI.submitFormButton.dataset.action = 'save';
                 showNewTodoModal(false);
             }
         });
@@ -71,6 +75,15 @@ const DialogManager = function() {
             } else if (UI.submitFormButton.dataset.action === 'save') {
                 TodoManager.editTodo(title, description, dueDate, priority, notes, projectID, UI.createTodoForm.dataset.todoID);
             }
+            displayProject(ProjectManager.getProject(projectID));
+            closeDialog();
+        });
+
+        UI.deleteTodoBtn.addEventListener('click', () => {
+            const projectID = UI.currentProjectH1.dataset.id;
+
+            TodoManager.deleteTodo(UI.createTodoForm.dataset.todoID, projectID);
+
             displayProject(ProjectManager.getProject(projectID));
             closeDialog();
         });

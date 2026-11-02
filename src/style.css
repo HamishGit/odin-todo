@@ -40,6 +40,10 @@ form#create-todo-form .form-item {
     flex-direction: column;
 }
 
+form#create-todo-form #delete-todo-btn.hidden {
+    display: none;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: clamp(200px, 25%, 300px) 4fr;
