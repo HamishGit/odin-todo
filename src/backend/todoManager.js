@@ -5,7 +5,6 @@ import StorageHandler from "./storageHandler.js";
 const TodoManager = function () {
 
     const createTodo = (title, desc, dueDate, priority, notes, projectID, todoID, completed) => {
-        console.log('Entered Create Todo');
         const todo = new Todo(title, desc, dueDate, priority, notes, projectID, todoID, completed);
 
         const project = projectManager.getProject(projectID);
@@ -31,7 +30,7 @@ const TodoManager = function () {
         return wasRemoved;
     };
 
-    const editTodo = (title, dueDate, priority, notes, projectID, id) => {
+    const editTodo = (title, desc, dueDate, priority, notes, projectID, id) => {
         const project = projectManager.getProject(projectID);
 
         if (!project) return false;
@@ -40,9 +39,10 @@ const TodoManager = function () {
         if (!todo) return false;
 
         todo.title = title;
+        todo.desc = desc;
         todo.dueDate = dueDate;
         todo.priority = priority;
-        todo.notes = notes
+        todo.notes = notes;
         
         StorageHandler.populateStorage();
 

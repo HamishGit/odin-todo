@@ -41,12 +41,7 @@ const ProjectManager = function () {
         return true;
     };
 
-    const getProject = (id) => {
-        console.log(`ID: ${id}\n\n`);
-        for (const project of projects) {
-            console.log(project);
-        }
-        console.log(`Projects.Get(id): ${projects.get(id)}`);
+    const getProject = (id) => {      
         return projects.get(id);
     };
 

@@ -6,8 +6,6 @@ export default function displayProject(project) {
     projectTitleElement.dataset.id = project.id;
 
     todoListElement.innerHTML = '';
-    
-    console.log(project.getTodos()[0].title);
 
     for (const todo of project.getTodos()) {
         const todoItemElement = document.createElement('div');
