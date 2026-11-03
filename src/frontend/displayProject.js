@@ -1,9 +1,12 @@
-export default function displayProject(project) {
+export default function displayProject(project) { 
     const projectTitleElement = document.querySelector('#project-header h1');
     const todoListElement = document.querySelector('#todo-list');
+    const projectForm = document.querySelector('#project-form');
 
     projectTitleElement.textContent = project.title;
     projectTitleElement.dataset.id = project.id;
+    projectTitleElement.style.color = project.color;
+    projectForm.dataset.id = project.id;
 
     todoListElement.innerHTML = '';
 

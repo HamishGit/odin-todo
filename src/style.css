@@ -26,21 +26,26 @@ body {
     font-family: var(--font-family-reg);
 }
 
-dialog#create-todo {
+dialog#create-todo, dialog#project-dialog {
     position: absolute;
     left: calc(50% - 150px);
     margin-top: 100px;
     border-radius: 0.5rem;
-    background-color: rgb(248, 190, 140);
+    background-color: var(--text-muted);
     padding: 5rem;
 }
 
-form#create-todo-form .form-item {
+form#create-todo-form .form-item, form#project-form .form-item {
     display: flex;
     flex-direction: column;
 }
 
-form#create-todo-form #delete-todo-btn.hidden {
+form input:not([type="color"]) {
+    border-radius: 4px;
+    padding: 10px;
+}
+
+form#create-todo-form #delete-todo-btn.hidden, #delete-project-btn.hidden {
     display: none;
 }
 

@@ -37,15 +37,28 @@
             <button type="button" id="delete-todo-btn">Delete</button>
         </form>
     </dialog>
+    <dialog id="project-dialog">
+        <form id="project-form">
+            <div class="form-item">
+                <label for="project-title">Title</label>
+                <input type="text" id="project-title">
+            </div>
+            <div class="form-item">
+                <label for="project-color">Color</label>
+                <input type="color" id="project-color">
+            </div>
+        
+            <button type="submit">Add</button>
+            <button type="button" id="close-project">Close</button>
+            <button type="button" id="delete-project-btn">Delete</button>
+        </form>
+    </dialog>
     <div class="grid-container">
         <aside id="sidebar">
             <section class="projects">
-                <h3>My Project</h3>
-                <h3>My Other Project</h3>
-                <h3>Music</h3>
             </section>
             <section class="footer">
-                <p>New Project</p>
+                <p id="new-project-btn">New Project</p>
             </section>
         </aside>
         <main id="content">
