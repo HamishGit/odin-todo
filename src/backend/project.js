@@ -32,7 +32,6 @@ class Project {
 
     remove(todoID) {
         return this._todos.delete(todoID);
-
     }
 
     getTodo(todoID) {
@@ -40,7 +39,7 @@ class Project {
     }
 
     getTodos() {
-        return [...this._todos.values()]; 
+        return [...this._todos.values()];
     }
 
     has(todoID) {
@@ -52,7 +51,7 @@ class Project {
             id: this._id,
             title: this._title,
             color: this._color,
-            todos: this.getTodos()
+            todos: this.getTodos(),
         });
     }
 }
