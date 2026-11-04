@@ -1,18 +1,18 @@
 @font-face {
-    font-family: 'Inter';
+    font-family: "Inter";
     src: url(./fonts/Inter-Regular.woff2);
 }
 
 :root {
     /* colors */
     --bg-color-light: #f2f5f7;
-    --bg-dark: #E1E4E9;
+    --bg-dark: #e1e4e9;
     --text-muted: oklch(77.858% 0.03953 265.794);
     --green: oklch(70.147% 0.22226 141.157);
     --icon-clr: #5e6061;
 
     /* fonts */
-    --font-family-reg: 'Inter', sans-serif;
+    --font-family-reg: "Inter", sans-serif;
 }
 
 * {
@@ -26,7 +26,18 @@ body {
     font-family: var(--font-family-reg);
 }
 
-dialog#create-todo, dialog#project-dialog {
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+}
+
+dialog#create-todo,
+dialog#project-dialog {
     position: absolute;
     left: calc(50% - 150px);
     margin-top: 100px;
@@ -35,7 +46,8 @@ dialog#create-todo, dialog#project-dialog {
     padding: 5rem;
 }
 
-form#create-todo-form .form-item, form#project-form .form-item {
+form#create-todo-form .form-item,
+form#project-form .form-item {
     display: flex;
     flex-direction: column;
 }
@@ -45,7 +57,8 @@ form input:not([type="color"]) {
     padding: 10px;
 }
 
-form#create-todo-form #delete-todo-btn.hidden, #delete-project-btn.hidden {
+form#create-todo-form #delete-todo-btn.hidden,
+#delete-project-btn.hidden {
     display: none;
 }
 
@@ -55,7 +68,8 @@ form#create-todo-form #delete-todo-btn.hidden, #delete-project-btn.hidden {
     height: 100vh;
 }
 
-#sidebar, #content {
+#sidebar,
+#content {
     display: grid;
     grid-template-rows: 1fr 3rem;
 }
@@ -76,7 +90,8 @@ form#create-todo-form #delete-todo-btn.hidden, #delete-project-btn.hidden {
     padding: 0.4rem 0.2rem;
 }
 
-#sidebar .projects h3.selected, #sidebar .projects h3:hover {
+#sidebar .projects h3.selected,
+#sidebar .projects h3:hover {
     background-color: var(--bg-dark);
 }
 
@@ -133,7 +148,7 @@ form#create-todo-form #delete-todo-btn.hidden, #delete-project-btn.hidden {
 }
 
 #content .header:hover h1::after {
-    content: '';
+    content: "";
     display: inline-block;
     margin-left: 10px;
     width: 20px;
@@ -166,7 +181,7 @@ form#create-todo-form #delete-todo-btn.hidden, #delete-project-btn.hidden {
     color: var(--text-muted);
 }
 
-#content .list .todo-item::before, #sidebar .projects h3::before {
+/* #content .list .todo-item::before, #sidebar .projects h3::before {
     content: '◯';
     font-size: 0.8rem;
     margin-right: 0.5rem;
@@ -189,7 +204,7 @@ form#create-todo-form #delete-todo-btn.hidden, #delete-project-btn.hidden {
 
     mask: url(./resources/check-circle-outline.svg) no-repeat center;
     mask-size: contain;
-}
+} */
 
 #content .footer {
     display: flex;

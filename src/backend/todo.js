@@ -1,11 +1,20 @@
 export default class Todo {
-    constructor(title, desc, dueDate, priority, notes, projectID, id) {
+    constructor(
+        title,
+        desc,
+        dueDate,
+        priority,
+        notes,
+        projectID,
+        id,
+        completed,
+    ) {
         this._title = title;
         this._desc = desc;
         this._dueDate = dueDate;
         this._priority = priority;
         this._notes = notes;
-        this._completed = false;
+        this._completed = completed ?? false;
         this._id = id ?? crypto.randomUUID();
         this._projectID = projectID;
     }
@@ -13,7 +22,7 @@ export default class Todo {
     set completed(bool) {
         this._completed = bool;
     }
-    
+
     get completed() {
         return this._completed;
     }
@@ -79,7 +88,7 @@ export default class Todo {
             priority: this._priority,
             notes: this._notes,
             completed: this._completed,
-            projectID: this._projectID
+            projectID: this._projectID,
         };
     }
 }

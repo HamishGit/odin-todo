@@ -1,10 +1,10 @@
 import ProjectManager from "./projectManager.js";
 
-const StorageHandler = function() {
+const StorageHandler = (function () {
     function populateStorage() {
-    const projects = ProjectManager.getProjects();
+        const projects = ProjectManager.getProjects();
 
-    localStorage.setItem("projects", JSON.stringify(projects));
+        localStorage.setItem("projects", JSON.stringify(projects));
     }
 
     function loadStorage() {
@@ -17,7 +17,7 @@ const StorageHandler = function() {
         ProjectManager.loadProjects(projectsData);
     }
 
-    return {loadStorage, populateStorage}
-}();
+    return { loadStorage, populateStorage };
+})();
 
 export default StorageHandler;
